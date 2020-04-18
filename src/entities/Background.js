@@ -1,4 +1,4 @@
-export default function Background({color, width, height}) {
+export default function Background({color, width, height, ...params}) {
   return new hitagi.Entity()
     .attach(new hitagi.components.graphics.Graphic({
         anchor: {
@@ -7,10 +7,12 @@ export default function Background({color, width, height}) {
         },
         relative: false,
         z: -100,
+        ...params,
     }))
     .attach(new hitagi.components.graphics.Rectangle({
-        color,
+        color: 0x86844F,
         height,
         width,
+        ...params,
     }));
 }

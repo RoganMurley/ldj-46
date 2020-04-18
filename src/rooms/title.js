@@ -1,5 +1,8 @@
 import hitagi from 'hitagi';
 
+import Background from '../entities/Background.js'
+import {makeWeeds} from '../entities/Weed.js'
+
 export default function titleRoom (width, height) {
   const gameStartListener = new hitagi.Entity()
     .attach({$id: "gameStartListener"});
@@ -25,12 +28,18 @@ export default function titleRoom (width, height) {
     }))
     .attach(new hitagi.components.graphics.Graphic())
     .attach(new hitagi.components.graphics.Text({
-      copy: 'Ludum Dare 46',
+      copy: 'Ludum Dare 46: Keep it alive',
       style: {
         font: '2rem Sans-Serif',
         fill: '#fff'
       }
     }));
 
-  return [gameStartListener, title, subtitle];
+  const background = new Background({
+    height: height,
+    width: width
+  });
+  const weeds = makeWeeds(width, height);
+
+  return [gameStartListener, title, subtitle, background, ...weeds];
 }
