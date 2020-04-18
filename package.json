@@ -1,0 +1,27 @@
+{
+  "name": "ldj",
+  "version": "1.0.0",
+  "description": "Ludum Dare Game",
+  "scripts": {
+    "build": "webpack build --mode production",
+    "serve": "webpack-dev-server --mode development"
+  },
+  "author": "Rogan Murley",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "css-loader": "^3.5.2",
+    "exports-loader": "^0.7.0",
+    "hitagi.js": "^1.1.4",
+    "html-webpack-plugin": "^4.2.0",
+    "path": "^0.12.7",
+    "style-loader": "^1.1.4",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  }
+}
