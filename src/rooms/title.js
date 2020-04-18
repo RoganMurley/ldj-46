@@ -1,6 +1,9 @@
 import hitagi from 'hitagi';
 
-function room (width, height) {
+export default function titleRoom (width, height) {
+  const gameStartListener = new hitagi.Entity()
+    .attach({$id: "gameStartListener"});
+
   const title = new hitagi.Entity()
     .attach(new hitagi.components.Position({
       x: width * 0.5,
@@ -29,7 +32,5 @@ function room (width, height) {
       }
     }));
 
-  return [title, author];
+  return [gameStartListener, title, author];
 }
-
-export default room;

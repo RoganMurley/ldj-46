@@ -1,7 +1,13 @@
 import css from './style.css';
 import hitagi from 'hitagi';
 
-import titleRoom from './title.js';
+import titleRoom from './rooms/title.js';
+import gameRoom from './rooms/game.js';
+
+import GameStartSystem from './systems/gameStart.js';
+
+import beast1ImgUrl from './sprites/beast-1.png';
+import beast2ImgUrl from './sprites/beast-2.png';
 
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -14,20 +20,44 @@ world.register(renderSystem);
 const roomSystem = new hitagi.systems.RoomSystem(world);
 world.register(roomSystem);
 
+const controlsSystem = new hitagi.systems.ControlsSystem();
+world.register(controlsSystem);
+
+const gameStartSystem = new GameStartSystem(
+  controlsSystem,
+  () => roomSystem.loadRoom('game'),
+);
+world.register(gameStartSystem);
+
 document.body.appendChild(renderSystem.view);
 
-roomSystem.saveRoom('title', titleRoom(width, height));
-roomSystem.loadRoom('title');
+renderSystem.load(
+  [
+    beast1ImgUrl,
+    beast2ImgUrl,
+  ],
+  main,
+);
 
-requestAnimationFrame(animate);
+function main() {
+  // Setup rooms.
+  roomSystem.saveRoom('title', titleRoom(width, height));
+  roomSystem.saveRoom('game', gameRoom(width, height));
+  roomSystem.loadRoom('title');
 
-function animate() {
-    // Update the world.
-    world.tick(1000/60);
+  // Setup controls.
+  controlsSystem.bind('m1', 'start');
 
-    // Render.
-    renderSystem.render();
+  // Game loop.
+  requestAnimationFrame(animate);
+  function animate() {
+      // Update the world.
+      world.tick(1000/60);
 
-    // Next frame.
-    requestAnimationFrame(animate);
+      // Render.
+      renderSystem.render();
+
+      // Next frame.
+      requestAnimationFrame(animate);
+  }
 }
