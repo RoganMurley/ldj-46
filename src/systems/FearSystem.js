@@ -1,7 +1,5 @@
 import {distance} from '../utils.js';
 
-const ANIMATION_SPEED = 0.08;
-
 
 export default class FearSystem {
   constructor () {
@@ -17,7 +15,6 @@ export default class FearSystem {
         if (distance(position, this.$tracked.beast.c.position) < 300) {
           speed = -50;
         }
-        console.l
         goto.x = this.$tracked.beast.c.position.x;
         goto.y = this.$tracked.beast.c.position.y;
 

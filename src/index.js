@@ -9,6 +9,7 @@ import BeastSystem from './systems/BeastSystem.js';
 import GotoSystem from './systems/GotoSystem.js';
 import VillagerSystem from './systems/VillagerSystem.js';
 import FearSystem from './systems/FearSystem.js';
+import ProcreationSystem from './systems/ProcreationSystem.js';
 
 import bushImgUrl from './sprites/bush.png';
 import beast1ImgUrl from './sprites/beast-1.png';
@@ -43,14 +44,10 @@ const gameStartSystem = new GameStartSystem(
     const gotoSystem = new GotoSystem();
     world.register(gotoSystem);
 
-    const beastSystem = new BeastSystem(controlsSystem);
-    world.register(beastSystem);
-
-    const villagerSystem = new VillagerSystem();
-    world.register(villagerSystem);
-
-    const fearSystem = new FearSystem();
-    world.register(fearSystem);
+    world.register(new BeastSystem(controlsSystem));
+    world.register(new VillagerSystem());
+    world.register(new FearSystem());
+    world.register(new ProcreationSystem());
   },
 );
 world.register(gameStartSystem);

@@ -1,5 +1,7 @@
 import hitagi from 'hitagi';
 
+import Bush from '../components/Bush.js';
+
 import img from '../sprites/bush.png';
 
 export default function (params) {
@@ -12,5 +14,5 @@ export default function (params) {
       rotation: Math.random() * 460,
       ...params,
     }))
-    .attach({$id: 'bush'});
+    .attach(new Bush());
 }
