@@ -4,7 +4,9 @@ import hitagi from 'hitagi';
 import titleRoom from './rooms/title.js';
 import gameRoom from './rooms/game.js';
 
-import GameStartSystem from './systems/gameStart.js';
+import GameStartSystem from './systems/GameStartSystem.js';
+import BeastSystem from './systems/BeastSystem.js';
+import GotoSystem from './systems/GotoSystem.js';
 
 import beast1ImgUrl from './sprites/beast-1.png';
 import beast2ImgUrl from './sprites/beast-2.png';
@@ -23,9 +25,21 @@ world.register(roomSystem);
 const controlsSystem = new hitagi.systems.ControlsSystem();
 world.register(controlsSystem);
 
+const velocitySystem = new hitagi.systems.VelocitySystem();
+world.register(velocitySystem);
+
 const gameStartSystem = new GameStartSystem(
   controlsSystem,
-  () => roomSystem.loadRoom('game'),
+  () => {
+    roomSystem.loadRoom('game');
+    world.deregister(gameStartSystem);
+
+    const gotoSystem = new GotoSystem();
+    world.register(gotoSystem);
+
+    const beastSystem = new BeastSystem(controlsSystem);
+    world.register(beastSystem);
+  },
 );
 world.register(gameStartSystem);
 
@@ -44,9 +58,6 @@ function main() {
   roomSystem.saveRoom('title', titleRoom(width, height));
   roomSystem.saveRoom('game', gameRoom(width, height));
   roomSystem.loadRoom('title');
-
-  // Setup controls.
-  controlsSystem.bind('m1', 'start');
 
   // Game loop.
   requestAnimationFrame(animate);

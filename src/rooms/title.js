@@ -17,8 +17,8 @@ export default function titleRoom (width, height) {
       copy: 'The Beast Weeps',
       style: {
         font: '6rem Sans-Serif',
-        fill: '#fff'
-      }
+        fill: 0x4B4A26,
+      },
     }));
 
   const subtitle = new hitagi.Entity()
@@ -31,8 +31,8 @@ export default function titleRoom (width, height) {
       copy: 'Ludum Dare 46: Keep it alive',
       style: {
         font: '2rem Sans-Serif',
-        fill: '#fff'
-      }
+        fill: 0x4B4A26,
+      },
     }));
 
   const background = new Background({
