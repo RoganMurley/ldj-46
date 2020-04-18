@@ -8,6 +8,8 @@ import img2 from '../sprites/villager-2.png';
 
 export default function (params) {
   return new hitagi.prefabs.Body({
+      width: 28,
+      height: 68,
       ...params,
     })
     .attach(new hitagi.components.graphics.Sprite({

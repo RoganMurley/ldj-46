@@ -1,7 +1,9 @@
+import deathSfxUrl from '../sounds/death.wav';
+
 const ANIMATION_SPEED = 0.08;
 
 export default class BeastSystem {
-  constructor (controlsSystem) {
+  constructor (controlsSystem, collisionSystem, soundSystem) {
     controlsSystem.bind('m1', 'move');
 
     this.update = {
@@ -39,6 +41,22 @@ export default class BeastSystem {
 
           goto.xspeed = speedX;
           goto.yspeed = speedY;
+        }
+
+        // Collisions
+        {
+          const test = collisionSystem.collide(entity, 'villager');
+          test.forEach(villager => {
+            villager.world.remove(villager);
+            soundSystem.play(deathSfxUrl);
+          });
+        }
+
+        {
+          const test = collisionSystem.collide(entity, 'weed');
+          test.forEach(weed => {
+            weed.world.remove(weed);
+          });
         }
       },
     };

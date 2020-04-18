@@ -1,16 +1,21 @@
 import hitagi from 'hitagi';
 
+import WeedComponent from '../components/weed.js';
+
 import weedImgUrl from '../sprites/weed.png';
 
 export default function Weed(params) {
-  return new hitagi.prefabs.Body({
+  return new hitagi.prefabs.StaticBody({
+      width: 12,
+      height: 12,
       z: -1,
       ...params,
     })
     .attach(new hitagi.components.graphics.StaticSprite({
       path: weedImgUrl,
       ...params,
-    }));
+    }))
+    .attach(new WeedComponent());
 }
 
 

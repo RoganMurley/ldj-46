@@ -5,7 +5,9 @@ import Bush from '../components/Bush.js';
 import img from '../sprites/bush.png';
 
 export default function (params) {
-  return new hitagi.prefabs.Body({
+  return new hitagi.prefabs.StaticBody({
+      width: 72,
+      height: 72,
       z: -1,
       ...params,
     })

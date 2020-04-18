@@ -7,7 +7,7 @@ import img1 from '../sprites/beast-1.png';
 import img2 from '../sprites/beast-2.png';
 
 export default function(params) {
-  return new hitagi.prefabs.Body({...params})
+  return new hitagi.prefabs.Body({width: 92, height: 92, ...params})
     .attach(new hitagi.components.graphics.Sprite({
       path: [img1, img2],
       animationSpeed: 0,

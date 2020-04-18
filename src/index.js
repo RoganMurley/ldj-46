@@ -18,6 +18,10 @@ import villager1ImgUrl from './sprites/villager-1.png';
 import villager2ImgUrl from './sprites/villager-2.png';
 import weedImgUrl from './sprites/weed.png';
 
+import deathSfxUrl from './sounds/death.wav';
+import spawnSfxUrl from './sounds/spawn.wav';
+
+
 const width = window.innerWidth;
 const height = window.innerHeight;
 
@@ -35,25 +39,27 @@ world.register(controlsSystem);
 const velocitySystem = new hitagi.systems.VelocitySystem();
 world.register(velocitySystem);
 
+const soundSystem = new hitagi.systems.SoundSystem();
+
 const gameStartSystem = new GameStartSystem(
   controlsSystem,
   () => {
     roomSystem.loadRoom('game');
     world.deregister(gameStartSystem);
 
-    const gotoSystem = new GotoSystem();
-    world.register(gotoSystem);
-
-    world.register(new BeastSystem(controlsSystem));
-    world.register(new VillagerSystem());
+    const collisionSystem = world.register(new hitagi.systems.CollisionSystem());
+    world.register(new GotoSystem());
+    world.register(new BeastSystem(controlsSystem, collisionSystem, soundSystem));
+    world.register(new VillagerSystem(collisionSystem));
     world.register(new FearSystem());
-    world.register(new ProcreationSystem());
+    world.register(new ProcreationSystem(soundSystem));
   },
 );
 world.register(gameStartSystem);
 
 document.body.appendChild(renderSystem.view);
 
+// Loading.
 renderSystem.load(
   [
     bushImgUrl,
@@ -65,6 +71,8 @@ renderSystem.load(
   ],
   main,
 );
+
+soundSystem.load(spawnSfxUrl);
 
 function main() {
   // Setup rooms.

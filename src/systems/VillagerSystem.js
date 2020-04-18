@@ -4,7 +4,7 @@ const ANIMATION_SPEED = 0.08;
 
 
 export default class VillagerSystem {
-  constructor () {
+  constructor (collisionSystem) {
     this.update = {
       villager: (entity, dt) => {
         const {goto, graphic, position, sprite, velocity} = entity.c;
@@ -18,6 +18,13 @@ export default class VillagerSystem {
         else if (velocity.xspeed > 0) {
           graphic.scale.x = 1;
           sprite.animationSpeed = ANIMATION_SPEED;
+        }
+
+        {
+          const test = collisionSystem.collide(entity, 'weed');
+          test.forEach(weed => {
+            weed.world.remove(weed);
+          });
         }
       },
     };
