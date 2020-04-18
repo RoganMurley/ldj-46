@@ -7,9 +7,15 @@ import gameRoom from './rooms/game.js';
 import GameStartSystem from './systems/GameStartSystem.js';
 import BeastSystem from './systems/BeastSystem.js';
 import GotoSystem from './systems/GotoSystem.js';
+import VillagerSystem from './systems/VillagerSystem.js';
+import FearSystem from './systems/FearSystem.js';
 
+import bushImgUrl from './sprites/bush.png';
 import beast1ImgUrl from './sprites/beast-1.png';
 import beast2ImgUrl from './sprites/beast-2.png';
+import villager1ImgUrl from './sprites/villager-1.png';
+import villager2ImgUrl from './sprites/villager-2.png';
+import weedImgUrl from './sprites/weed.png';
 
 const width = window.innerWidth;
 const height = window.innerHeight;
@@ -39,6 +45,12 @@ const gameStartSystem = new GameStartSystem(
 
     const beastSystem = new BeastSystem(controlsSystem);
     world.register(beastSystem);
+
+    const villagerSystem = new VillagerSystem();
+    world.register(villagerSystem);
+
+    const fearSystem = new FearSystem();
+    world.register(fearSystem);
   },
 );
 world.register(gameStartSystem);
@@ -47,8 +59,12 @@ document.body.appendChild(renderSystem.view);
 
 renderSystem.load(
   [
+    bushImgUrl,
     beast1ImgUrl,
     beast2ImgUrl,
+    villager1ImgUrl,
+    villager2ImgUrl,
+    weedImgUrl,
   ],
   main,
 );

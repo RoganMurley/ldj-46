@@ -1,3 +1,6 @@
+import {distance} from '../utils.js';
+
+
 export default class GotoSystem {
   constructor () {
     this.update = {
@@ -16,13 +19,11 @@ export default class GotoSystem {
           velocity.yspeed = -goto.yspeed;
         }
 
-        const distance = Math.sqrt(
-          Math.pow(position.x - goto.x, 2) + Math.pow(position.y - goto.y, 2)
-        );
-        if (distance < 200) {
+        const dist = distance(position, goto);
+        if (dist < 200) {
           velocity.xspeed *= 0.99;
         }
-        if (distance < 10) {
+        if (dist < 10) {
           velocity.xspeed = 0;
           velocity.yspeed = 0;
         }

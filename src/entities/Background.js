@@ -1,4 +1,4 @@
-export default function Background({color, width, height, ...params}) {
+export default function({color, width, height, ...params}) {
   return new hitagi.Entity()
     .attach(new hitagi.components.graphics.Graphic({
         anchor: {
