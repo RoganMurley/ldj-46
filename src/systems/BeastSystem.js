@@ -6,7 +6,7 @@ export default class BeastSystem {
 
     this.update = {
       beast: (entity, dt) => {
-        const {goto, graphic, sprite, velocity} = entity.c;
+        const {goto, graphic, position, sprite, velocity} = entity.c;
 
         // Graphics
         sprite.animationSpeed = 0;
@@ -24,8 +24,21 @@ export default class BeastSystem {
           const mousePos = controlsSystem.getMousePos();
           goto.x = mousePos.x;
           goto.y = mousePos.y;
-          goto.xspeed = 200;
-          goto.yspeed = 200;
+
+          const speed = 200;
+          const diffX = Math.abs(position.x - goto.x);
+          const diffY = Math.abs(position.y - goto.y);
+          let speedX = speed;
+          let speedY = speed;
+
+          if (diffX > diffY) {
+            speedY *= (diffY / diffX);
+          } else {
+            speedX *= (diffX / diffY);
+          }
+
+          goto.xspeed = speedX;
+          goto.yspeed = speedY;
         }
       },
     };

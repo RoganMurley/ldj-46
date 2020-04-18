@@ -16,22 +16,14 @@ export default class GotoSystem {
           velocity.yspeed = -goto.yspeed;
         }
 
-        velocity.yspeed *= 0.99;
-        const distance = {
-          x: Math.abs(position.x - goto.x),
-          y: Math.abs(position.y - goto.y),
-        };
-        if (distance.x < 200) {
-          velocity.xspeed /= (distance.x * 0.01);
+        const distance = Math.sqrt(
+          Math.pow(position.x - goto.x, 2) + Math.pow(position.y - goto.y, 2)
+        );
+        if (distance < 200) {
+          velocity.xspeed *= 0.99;
         }
-        if (distance.y < 200) {
-          velocity.yspeed /= (distance.y * 0.01);
-        }
-
-        if (distance.x < 10) {
+        if (distance < 10) {
           velocity.xspeed = 0;
-        }
-        if (distance.y < 10) {
           velocity.yspeed = 0;
         }
       },
