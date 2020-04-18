@@ -14,12 +14,12 @@ export default function gameRoom (width, height) {
   });
 
   const beast = new Beast({x: width * 0.5, y: height * 0.5});
-  const bush = new Bush({x: width * 0.75, y: height * 0.25});
+  const bush = new Bush({x: width * 0.75, y: height * 0.25, size: 1});
   const villagers = [
-    new Villager({x: width * 0.4, y: height * 0.4}),
-    new Villager({x: width * 0.4, y: height * 0.6}),
-    new Villager({x: width * 0.6, y: height * 0.4}),
-    new Villager({x: width * 0.6, y: height * 0.6}),
+    new Villager({x: width * 0.4, y: height * 0.4, size: 1}),
+    new Villager({x: width * 0.4, y: height * 0.6, size: 1}),
+    new Villager({x: width * 0.6, y: height * 0.4, size: 1}),
+    new Villager({x: width * 0.6, y: height * 0.6, size: 1}),
   ];
 
   const weeds = makeWeeds(width, height);

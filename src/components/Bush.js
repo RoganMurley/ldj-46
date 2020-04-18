@@ -1,6 +1,7 @@
 export default class Bush {
-  constructor() {
+  constructor({size}) {
     this.$id = 'bush';
     this.deps = ['sprite'];
+    this.size = size;
   }
 }

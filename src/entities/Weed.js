@@ -5,17 +5,19 @@ import WeedComponent from '../components/weed.js';
 import weedImgUrl from '../sprites/weed.png';
 
 export default function Weed(params) {
+  const {size} = params;
   return new hitagi.prefabs.StaticBody({
-      width: 12,
-      height: 12,
+      width: 12 * size,
+      height: 12 * size,
       z: -1,
+      scale: {x: size, y: size},
       ...params,
     })
     .attach(new hitagi.components.graphics.StaticSprite({
       path: weedImgUrl,
       ...params,
     }))
-    .attach(new WeedComponent());
+    .attach(new WeedComponent({size}));
 }
 
 
@@ -32,6 +34,6 @@ const weedPositions = [
 
 export function makeWeeds(width, height) {
   return weedPositions.map(({x, y}) => {
-    return new Weed({x: width * x, y: height * y});
+    return new Weed({x: width * x, y: height * y, size: 1});
   });
 }

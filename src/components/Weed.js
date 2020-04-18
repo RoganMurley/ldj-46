@@ -1,6 +1,7 @@
 export default class Weed {
-  constructor() {
+  constructor({size}) {
     this.$id = 'weed';
     this.deps = ['sprite'];
+    this.size = size;
   }
 }

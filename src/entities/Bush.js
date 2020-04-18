@@ -5,9 +5,11 @@ import Bush from '../components/Bush.js';
 import img from '../sprites/bush.png';
 
 export default function (params) {
+  const {size} = params;
   return new hitagi.prefabs.StaticBody({
-      width: 72,
-      height: 72,
+      width: 72 * size,
+      height: 72 * size,
+      scale: {x: size, y: size},
       z: -1,
       ...params,
     })
@@ -16,5 +18,5 @@ export default function (params) {
       rotation: Math.random() * 460,
       ...params,
     }))
-    .attach(new Bush());
+    .attach(new Bush({...params}));
 }
