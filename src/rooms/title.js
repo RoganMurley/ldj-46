@@ -18,19 +18,19 @@ export default function titleRoom (width, height) {
       }
     }));
 
-  const author = new hitagi.Entity()
+  const subtitle = new hitagi.Entity()
     .attach(new hitagi.components.Position({
       x: width * 0.5,
       y: height * 0.6
     }))
     .attach(new hitagi.components.graphics.Graphic())
     .attach(new hitagi.components.graphics.Text({
-      copy: 'A Rogan Murley Game',
+      copy: 'Ludum Dare 46',
       style: {
         font: '2rem Sans-Serif',
         fill: '#fff'
       }
     }));
 
-  return [gameStartListener, title, author];
+  return [gameStartListener, title, subtitle];
 }
