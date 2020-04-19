@@ -9,5 +9,12 @@ export default function(params) {
   return new hitagi.Entity()
     .attach(new hitagi.components.Position({x, y}))
     .attach(new Camera({}))
-    .attach({$id: 'followCamera', cameraSpeed: 0.1});
+    .attach({
+      $id: 'followCamera',
+      cameraSpeed: 0.05,
+      shake: {
+        x: 0,
+        y: 0,
+      },
+    });
 }

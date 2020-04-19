@@ -12,6 +12,7 @@ export default class GameOverSystem {
       bush: 'many',
       weed: 'many',
       villager: 'many',
+      followCamera: 'single',
     };
     this.ended = false;
     this.ready = false;
@@ -74,6 +75,8 @@ export default class GameOverSystem {
 
       soundSystem.play(extinctionSfxUrl);
       this.ended = true;
+      this.$tracked.followCamera.c.followCamera.shake.x += 20;
+      this.$tracked.followCamera.c.followCamera.shake.y += 20;
 
       setTimeout(
         () => {this.ready = true;},

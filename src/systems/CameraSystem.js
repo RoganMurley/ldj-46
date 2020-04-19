@@ -52,23 +52,39 @@ export default class CameraSystem {
         updateEntityTranslation(entity);
       },
       followCamera: (entity, dt) => {
-        const cameraSpeed = 0.05;
-        const {position} = entity.c;
+        // Follow the camera.
+        const {position, followCamera} = entity.c;
         const target = this.$tracked.beast.c.position;
+        const speed = followCamera.cameraSpeed;
 
         const xDiff = Math.abs(position.x - target.x);
         const yDiff = Math.abs(position.y - target.y);
 
         if (position.x < target.x) {
-          position.x += xDiff * cameraSpeed;
+          position.x += xDiff * speed;
         } else if (position.x > target.x) {
-          position.x -= xDiff * cameraSpeed;
+          position.x -= xDiff * speed;
         }
 
         if (position.y < target.y) {
-          position.y += yDiff * cameraSpeed;
+          position.y += yDiff * speed;
         } else if (position.y > target.y) {
-          position.y -= yDiff * cameraSpeed;
+          position.y -= yDiff * speed;
+        }
+
+        // Shake the camera.
+        followCamera.shake.x *= 0.9;
+        followCamera.shake.y *= 0.9;
+
+        if (Math.random() > 0.5) {
+          position.x += followCamera.shake.x;
+        } else {
+          position.x -= followCamera.shake.x;
+        }
+        if (Math.random() > 0.5) {
+          position.y += followCamera.shake.y;
+        } else {
+          position.y += followCamera.shake.y;
         }
       },
     };

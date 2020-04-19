@@ -5,14 +5,19 @@ import deathSfxUrl from '../sounds/death.wav';
 
 export default class DeathSystem {
   constructor (collisionSystem, soundSystem) {
+    this.$tracking = {
+      followCamera: 'single',
+    };
     this.update = {
-
       weed: (entity, dt) => {
-        if (
-          collisionSystem.collide(entity, 'villager').length ||
-          collisionSystem.collide(entity, 'beast').length
-        ) {
+        const villagerHit = collisionSystem.collide(entity, 'villager').length;
+        const beastHit = collisionSystem.collide(entity, 'beast').length;
+        if (villagerHit || beastHit) {
           entity.world.remove(entity);
+          if (beastHit) {
+            this.$tracked.followCamera.c.followCamera.shake.x += 3;
+            this.$tracked.followCamera.c.followCamera.shake.y += 3;
+          }
         }
       },
 
@@ -26,6 +31,8 @@ export default class DeathSystem {
             ...position,
           }));
           soundSystem.play(deathSfxUrl);
+          this.$tracked.followCamera.c.followCamera.shake.x += 10;
+          this.$tracked.followCamera.c.followCamera.shake.y += 10;
         }
       },
 
