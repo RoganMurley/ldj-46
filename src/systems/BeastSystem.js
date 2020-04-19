@@ -1,8 +1,3 @@
-import Blood from '../entities/Blood.js';
-
-import deathSfxUrl from '../sounds/death.wav';
-
-
 const ANIMATION_SPEED = 0.08;
 
 export default class BeastSystem {
@@ -44,28 +39,6 @@ export default class BeastSystem {
 
           goto.xspeed = speedX;
           goto.yspeed = speedY;
-        }
-
-        // Collisions
-        {
-          const test = collisionSystem.collide(entity, 'villager');
-          test.forEach(villager => {
-            world.remove(villager);
-            const {position} = villager.c;
-            world.add(new Blood({
-              remaining: 60000,
-              size: villager.c.villager.size,
-              ...position,
-            }));
-            soundSystem.play(deathSfxUrl);
-          });
-        }
-
-        {
-          const test = collisionSystem.collide(entity, 'weed');
-          test.forEach(weed => {
-            world.remove(weed);
-          });
         }
       },
     };

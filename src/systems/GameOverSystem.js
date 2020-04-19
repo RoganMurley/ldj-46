@@ -1,10 +1,14 @@
+import Camera from '../components/Camera.js';
+
 import extinctionSfxUrl from '../sounds/extinction.wav';
+
+const textColor = 0x530603;
 
 
 export default class GameOverSystem {
   constructor(width, height, world, soundSystem, controlsSystem, roomSystem) {
     this.$tracking = {
-      beast: 'many',
+      beast: 'single',
       bush: 'many',
       weed: 'many',
       villager: 'many',
@@ -21,9 +25,6 @@ export default class GameOverSystem {
         }
         return;
       };
-      if (!Object.values(this.$tracked.beast).length) {
-        this.gameOver('Beast-Gods');
-      }
       if (!Object.values(this.$tracked.bush).length) {
         this.gameOver('Bushes');
       }
@@ -48,7 +49,7 @@ export default class GameOverSystem {
           copy: 'EXTINCTION EVENT',
           style: {
             font: '64px Sans-Serif',
-            fill: 0xDE0002,
+            fill: textColor,
           },
         }))
       );
@@ -66,10 +67,11 @@ export default class GameOverSystem {
           copy: `${extinctCreature} are now extinct`,
           style: {
             font: '32px Sans-Serif',
-            fill: 0xDE0002,
+            fill: textColor,
           },
         }))
       );
+
       soundSystem.play(extinctionSfxUrl);
       this.ended = true;
 
