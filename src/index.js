@@ -12,6 +12,7 @@ import FearSystem from './systems/FearSystem.js';
 import ProcreationSystem from './systems/ProcreationSystem.js';
 import GameOverSystem from './systems/GameOverSystem.js';
 import CameraSystem from './systems/CameraSystem.js';
+import GoalSystem from './systems/GoalSystem.js';
 
 import bushImgUrl from './sprites/bush.png';
 import beast1ImgUrl from './sprites/beast-1.png';
@@ -58,6 +59,7 @@ const gameStartSystem = new GameStartSystem(
     world.register(new FearSystem());
     world.register(new ProcreationSystem(soundSystem));
     world.register(new GameOverSystem(width, height, world, soundSystem, controlsSystem, roomSystem));
+    world.register(new GoalSystem());
   },
 );
 world.register(gameStartSystem);
