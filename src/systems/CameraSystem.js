@@ -5,6 +5,7 @@ export default class CameraSystem {
   constructor(width, height, renderSystem, controlsSystem) {
     this.$tracking = {
       camera: 'single',
+      beast: 'single',
     };
 
     this.getTranslation = () => {
@@ -49,6 +50,26 @@ export default class CameraSystem {
     this.update = {
       graphic: (entity, dt) => {
         updateEntityTranslation(entity);
+      },
+      followCamera: (entity, dt) => {
+        const cameraSpeed = 0.05;
+        const {position} = entity.c;
+        const target = this.$tracked.beast.c.position;
+
+        const xDiff = Math.abs(position.x - target.x);
+        const yDiff = Math.abs(position.y - target.y);
+
+        if (position.x < target.x) {
+          position.x += xDiff * cameraSpeed;
+        } else if (position.x > target.x) {
+          position.x -= xDiff * cameraSpeed;
+        }
+
+        if (position.y < target.y) {
+          position.y += yDiff * cameraSpeed;
+        } else if (position.y > target.y) {
+          position.y -= yDiff * cameraSpeed;
+        }
       },
     };
   }

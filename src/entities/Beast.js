@@ -16,5 +16,4 @@ export default function(params) {
     }))
     .attach(new Beast({}))
     .attach(new Goto({x: 0, y: 0, xspeed: 0, yspeed:0, ...params}))
-    .attach(new Camera({}));
 }
