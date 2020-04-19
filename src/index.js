@@ -24,9 +24,8 @@ import deathSfxUrl from './sounds/death.wav';
 import extinctionSfxUrl from './sounds/extinction.wav';
 import spawnSfxUrl from './sounds/spawn.wav';
 
-
-const width = 640;
-const height = 480;
+const width = window.innerWidth;
+const height = window.innerHeight;
 
 const world = new hitagi.World();
 

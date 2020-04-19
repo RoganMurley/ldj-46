@@ -37,6 +37,7 @@ export default class GameOverSystem {
     this.gameOver = (extinctCreature) => {
       world.add(new hitagi.Entity()
         .attach(new hitagi.components.graphics.Graphic({
+          z: 10,
           relative: false,
           translate: {
             x: width * 0.5,
@@ -54,6 +55,7 @@ export default class GameOverSystem {
 
       world.add(new hitagi.Entity()
         .attach(new hitagi.components.graphics.Graphic({
+          z: 10,
           relative: false,
           translate: {
             x: width * 0.5,
