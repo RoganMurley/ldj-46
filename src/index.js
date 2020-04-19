@@ -15,6 +15,7 @@ import CameraSystem from './systems/CameraSystem.js';
 import GoalSystem from './systems/GoalSystem.js';
 import BloodSystem from './systems/BloodSystem.js';
 import DeathSystem from './systems/DeathSystem.js';
+import HungerSystem from './systems/HungerSystem.js';
 
 import bushImgUrl from './sprites/bush.png';
 import beast1ImgUrl from './sprites/beast-1.png';
@@ -65,6 +66,7 @@ const gameStartSystem = new GameStartSystem(
     world.register(new GoalSystem());
     world.register(new BloodSystem());
     world.register(new DeathSystem(collisionSystem, soundSystem));
+    world.register(new HungerSystem());
   },
 );
 world.register(gameStartSystem);

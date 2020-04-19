@@ -22,7 +22,9 @@ export default class DeathSystem {
       },
 
       villager: (entity, dt) => {
-        if (collisionSystem.collide(entity, 'beast').length) {
+        const beastHit = collisionSystem.collide(entity, 'beast').length;
+        const starved = entity.c.hunger.starved;
+        if (beastHit || starved) {
           entity.world.remove(entity);
           const {position, villager} = entity.c;
           entity.world.add(new Blood({
@@ -31,11 +33,12 @@ export default class DeathSystem {
             ...position,
           }));
           soundSystem.play(deathSfxUrl);
-          this.$tracked.followCamera.c.followCamera.shake.x += 10;
-          this.$tracked.followCamera.c.followCamera.shake.y += 10;
+          if (beastHit) {
+            this.$tracked.followCamera.c.followCamera.shake.x += 10;
+            this.$tracked.followCamera.c.followCamera.shake.y += 10;
+          }
         }
       },
-
     };
   }
 }
