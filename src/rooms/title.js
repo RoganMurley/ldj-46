@@ -4,6 +4,13 @@ import Camera from '../components/Camera.js'
 import Background from '../entities/Background.js'
 import {makeWeeds} from '../entities/Weed.js'
 
+
+const centre = {
+  x: 999999,
+  y: 999999,
+};
+
+
 export default function titleRoom (width, height) {
   const gameStartListener = new hitagi.Entity()
     .attach({$id: "gameStartListener"});
@@ -41,14 +48,7 @@ export default function titleRoom (width, height) {
     }));
 
   const camera = new hitagi.Entity()
-    .attach(new hitagi.components.Position({
-      x: width * 0.5,
-      y: height * 0.5,
-    }))
-    .attach(new hitagi.components.Velocity({
-      xspeed: 10,
-      yspeed: 5,
-    }))
+    .attach(new hitagi.components.Position({...centre}))
     .attach(new Camera({}));
 
   const background = new Background({

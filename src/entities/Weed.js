@@ -4,6 +4,13 @@ import WeedComponent from '../components/weed.js';
 
 import weedImgUrl from '../sprites/weed.png';
 
+
+const centre = {
+  x: 999999,
+  y: 999999,
+};
+
+
 export default function Weed(params) {
   const {size} = params;
   return new hitagi.prefabs.StaticBody({
@@ -30,8 +37,8 @@ export function makeWeeds(width, height) {
   for (let i = 0; i < count; i++) {
     weeds.push(
       new Weed({
-        x: width * 0.5 + radius * Math.cos(i * angle),
-        y: height * 0.5 + radius * Math.sin(i * angle),
+        x: centre.x + radius * Math.cos(i * angle),
+        y: centre.y + radius * Math.sin(i * angle),
         size: 1
       })
     );
