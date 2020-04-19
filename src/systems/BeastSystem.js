@@ -1,9 +1,12 @@
+import Blood from '../entities/Blood.js';
+
 import deathSfxUrl from '../sounds/death.wav';
+
 
 const ANIMATION_SPEED = 0.08;
 
 export default class BeastSystem {
-  constructor (controlsSystem, collisionSystem, soundSystem) {
+  constructor (world, controlsSystem, collisionSystem, soundSystem) {
     controlsSystem.bind('m1', 'move');
 
     this.update = {
@@ -47,7 +50,13 @@ export default class BeastSystem {
         {
           const test = collisionSystem.collide(entity, 'villager');
           test.forEach(villager => {
-            villager.world.remove(villager);
+            world.remove(villager);
+            const {position} = villager.c;
+            world.add(new Blood({
+              remaining: 60000,
+              size: villager.c.villager.size,
+              ...position,
+            }));
             soundSystem.play(deathSfxUrl);
           });
         }
@@ -55,7 +64,7 @@ export default class BeastSystem {
         {
           const test = collisionSystem.collide(entity, 'weed');
           test.forEach(weed => {
-            weed.world.remove(weed);
+            world.remove(weed);
           });
         }
       },

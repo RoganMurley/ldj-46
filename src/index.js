@@ -13,10 +13,12 @@ import ProcreationSystem from './systems/ProcreationSystem.js';
 import GameOverSystem from './systems/GameOverSystem.js';
 import CameraSystem from './systems/CameraSystem.js';
 import GoalSystem from './systems/GoalSystem.js';
+import BloodSystem from './systems/BloodSystem.js';
 
 import bushImgUrl from './sprites/bush.png';
 import beast1ImgUrl from './sprites/beast-1.png';
 import beast2ImgUrl from './sprites/beast-2.png';
+import bloodImgUrl from './sprites/blood.png';
 import villager1ImgUrl from './sprites/villager-1.png';
 import villager2ImgUrl from './sprites/villager-2.png';
 import weedImgUrl from './sprites/weed.png';
@@ -54,12 +56,13 @@ const gameStartSystem = new GameStartSystem(
 
     const collisionSystem = world.register(new hitagi.systems.CollisionSystem());
     world.register(new GotoSystem());
-    world.register(new BeastSystem(controlsSystem, collisionSystem, soundSystem));
+    world.register(new BeastSystem(world, controlsSystem, collisionSystem, soundSystem));
     world.register(new VillagerSystem(collisionSystem));
     world.register(new FearSystem());
     world.register(new ProcreationSystem(world, soundSystem));
     world.register(new GameOverSystem(width, height, world, soundSystem, controlsSystem, roomSystem));
     world.register(new GoalSystem());
+    world.register(new BloodSystem());
   },
 );
 world.register(gameStartSystem);
@@ -72,6 +75,7 @@ renderSystem.load(
     bushImgUrl,
     beast1ImgUrl,
     beast2ImgUrl,
+    bloodImgUrl,
     villager1ImgUrl,
     villager2ImgUrl,
     weedImgUrl,
