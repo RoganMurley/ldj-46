@@ -27,10 +27,10 @@ export default class GameOverSystem {
         return;
       };
       if (!Object.values(this.$tracked.beast).length) {
-        this.gameOver("The beasts are now extinct.");
+        this.gameOver("Your friends are lonely now.");
       }
       if (!Object.values(this.$tracked.villager).length) {
-        this.gameOver("The bipeds are now extinct.");
+        this.gameOver("You are lonely now.");
       }
     };
     this.gameOver = (extinctCreature) => {

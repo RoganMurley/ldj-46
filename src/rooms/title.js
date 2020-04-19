@@ -17,7 +17,7 @@ export default function titleRoom (width, height) {
       },
     }))
     .attach(new hitagi.components.graphics.Text({
-      copy: "Biped's Best Friend",
+      copy: "Man's Best Friend",
       style: {
         font: '64px Sans-Serif',
         fill: 0xA00404,
