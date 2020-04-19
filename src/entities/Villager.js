@@ -21,7 +21,7 @@ export default function (params) {
       animationSpeed: 0,
       ...params,
     }))
-    .attach(new Villager({size}))
+    .attach(new Villager({size, ...params}))
     .attach(new Goto({x: 0, y: 0, xspeed: 0, yspeed:0, ...params}))
     .attach(new Hunger({current: hunger, max: hunger, ...params}));
 }

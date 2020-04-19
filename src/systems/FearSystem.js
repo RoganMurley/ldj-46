@@ -9,14 +9,13 @@ export default class FearSystem {
 
     this.update = {
       villager: (entity, dt) => {
-        const {position} = entity.c;
-        let speed = 0;
+        const {position, villager} = entity.c;
         const beast = this.$tracked.beast;
-        const beastPosition = beast ? this.$tracked.beast.c.position : position;
+        const beastPosition = beast ? beast.c.position : position;
         if (distance(position, beastPosition) < 240) {
-          speed = -50;
+          villager.busy = true;
+          moveTo(entity, beastPosition, -50);
         }
-        moveTo(entity, beastPosition, speed)
       },
     };
   }

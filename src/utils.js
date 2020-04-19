@@ -4,7 +4,7 @@ export function distance(a, b) {
 
 export function getNearest(from, entities) {
   let nearestEntity = null;
-  let nearestDist = Infinity();
+  let nearestDist = Infinity;
   entities.forEach((to) => {
     const dist = distance(from.c.position, to.c.position);
     if (dist < nearestDist) {

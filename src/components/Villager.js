@@ -1,8 +1,9 @@
 export default class Villager {
-  constructor({size}) {
+  constructor(params) {
     this.$id = 'villager';
     this.deps = ['velocity', 'sprite'];
     this.hunger = 100;
-    this.size = size;
+    this.size = params.size;
+    this.busy = params.busy;
   }
 }
