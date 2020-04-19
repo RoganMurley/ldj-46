@@ -25,12 +25,12 @@ import extinctionSfxUrl from './sounds/extinction.wav';
 import spawnSfxUrl from './sounds/spawn.wav';
 
 
-const width = window.innerWidth;
-const height = window.innerHeight;
+const width = 640;
+const height = 480;
 
 const world = new hitagi.World();
 
-const renderSystem = new hitagi.systems.PixiRenderSystem({width: window.innerWidth, height: window.innerHeight});
+const renderSystem = new hitagi.systems.PixiRenderSystem({width, height});
 world.register(renderSystem);
 
 const roomSystem = new hitagi.systems.RoomSystem(world);

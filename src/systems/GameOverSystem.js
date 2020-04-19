@@ -46,7 +46,7 @@ export default class GameOverSystem {
         .attach(new hitagi.components.graphics.Text({
           copy: 'EXTINCTION EVENT',
           style: {
-            font: '5rem Sans-Serif',
+            font: '64px Sans-Serif',
             fill: 0xDE0002,
           },
         }))
@@ -57,13 +57,13 @@ export default class GameOverSystem {
           relative: false,
           translate: {
             x: width * 0.5,
-            y: height * 0.55
+            y: height * 0.6
           },
         }))
         .attach(new hitagi.components.graphics.Text({
-          copy: `The ${extinctCreature} are extinct`,
+          copy: `${extinctCreature} are now extinct`,
           style: {
-            font: '2rem Serif',
+            font: '32px Sans-Serif',
             fill: 0xDE0002,
           },
         }))

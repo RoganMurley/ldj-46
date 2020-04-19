@@ -43,7 +43,6 @@ export default class CameraSystem {
     this.build = {
       graphic: (entity) => {
         updateEntityTranslation(entity);
-        console.log(entity.c.graphic.translate)
       },
     };
 
