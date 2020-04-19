@@ -23,7 +23,7 @@ export default class BeastSystem {
 
         // Controls
         if (controlsSystem.check('move')) {
-          const mousePos = controlsSystem.getMousePos();
+          const mousePos = controlsSystem.cameraGetMousePos();
           goto.x = mousePos.x;
           goto.y = mousePos.y;
 

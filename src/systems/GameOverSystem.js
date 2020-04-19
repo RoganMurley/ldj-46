@@ -36,11 +36,13 @@ export default class GameOverSystem {
     };
     this.gameOver = (extinctCreature) => {
       world.add(new hitagi.Entity()
-        .attach(new hitagi.components.Position({
-          x: width * 0.5,
-          y: height * 0.45
+        .attach(new hitagi.components.graphics.Graphic({
+          relative: false,
+          translate: {
+            x: width * 0.5,
+            y: height * 0.45
+          },
         }))
-        .attach(new hitagi.components.graphics.Graphic())
         .attach(new hitagi.components.graphics.Text({
           copy: 'EXTINCTION EVENT',
           style: {
@@ -51,11 +53,13 @@ export default class GameOverSystem {
       );
 
       world.add(new hitagi.Entity()
-        .attach(new hitagi.components.Position({
-          x: width * 0.5,
-          y: height * 0.55
+        .attach(new hitagi.components.graphics.Graphic({
+          relative: false,
+          translate: {
+            x: width * 0.5,
+            y: height * 0.55
+          },
         }))
-        .attach(new hitagi.components.graphics.Graphic())
         .attach(new hitagi.components.graphics.Text({
           copy: `The ${extinctCreature} are extinct`,
           style: {

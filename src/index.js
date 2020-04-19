@@ -11,6 +11,7 @@ import VillagerSystem from './systems/VillagerSystem.js';
 import FearSystem from './systems/FearSystem.js';
 import ProcreationSystem from './systems/ProcreationSystem.js';
 import GameOverSystem from './systems/GameOverSystem.js';
+import CameraSystem from './systems/CameraSystem.js';
 
 import bushImgUrl from './sprites/bush.png';
 import beast1ImgUrl from './sprites/beast-1.png';
@@ -40,6 +41,8 @@ world.register(controlsSystem);
 
 const velocitySystem = new hitagi.systems.VelocitySystem();
 world.register(velocitySystem);
+
+const cameraSystem = world.register(new CameraSystem(width, height, renderSystem, controlsSystem));
 
 const soundSystem = new hitagi.systems.SoundSystem();
 
