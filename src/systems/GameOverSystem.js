@@ -9,8 +9,6 @@ export default class GameOverSystem {
   constructor(width, height, world, soundSystem, controlsSystem, roomSystem) {
     this.$tracking = {
       beast: 'many',
-      bush: 'many',
-      weed: 'many',
       villager: 'many',
       followCamera: 'single',
     };
@@ -27,16 +25,10 @@ export default class GameOverSystem {
         return;
       };
       if (!Object.values(this.$tracked.beast).length) {
-        this.gameOver('Beasts');
-      }
-      if (!Object.values(this.$tracked.bush).length) {
-        this.gameOver('Bushes');
-      }
-      if (!Object.values(this.$tracked.weed).length) {
-        this.gameOver('Weeds');
+        this.gameOver("The beasts are now extinct.");
       }
       if (!Object.values(this.$tracked.villager).length) {
-        this.gameOver('Bipeds');
+        this.gameOver("The bipeds are now extinct.");
       }
     };
     this.gameOver = (extinctCreature) => {
@@ -50,7 +42,7 @@ export default class GameOverSystem {
           },
         }))
         .attach(new hitagi.components.graphics.Text({
-          copy: 'EXTINCTION',
+          copy: 'BAD BEAST',
           style: {
             font: '64px Sans-Serif',
             fill: textColor,
@@ -68,7 +60,7 @@ export default class GameOverSystem {
           },
         }))
         .attach(new hitagi.components.graphics.Text({
-          copy: `The ${extinctCreature} are extinct.`,
+          copy: extinctCreature,
           style: {
             font: '32px Sans-Serif',
             fill: textColor,

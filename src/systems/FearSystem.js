@@ -11,9 +11,12 @@ export default class FearSystem {
       villager: (entity, dt) => {
         const {position, villager} = entity.c;
         const beast = this.$tracked.beast;
-        const beastPosition = beast ? beast.c.position : position;
+        let beastPosition = beast ? beast.c.position : position;
+        beastPosition = {...beastPosition};
         if (distance(position, beastPosition) < 240) {
-          villager.busy = true;
+          villager.busy = 500;
+          beastPosition.x += 100 - 200 * Math.random();
+          beastPosition.y += 100 - 200 * Math.random();
           moveTo(entity, beastPosition, -50);
         }
       },

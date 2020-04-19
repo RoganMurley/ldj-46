@@ -17,7 +17,7 @@ export default function titleRoom (width, height) {
       },
     }))
     .attach(new hitagi.components.graphics.Text({
-      copy: 'Systems that Bleed',
+      copy: "Biped's Best Friend",
       style: {
         font: '64px Sans-Serif',
         fill: 0xA00404,

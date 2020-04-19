@@ -11,7 +11,9 @@ export default class VillagerSystem {
     };
     this.tickStart = (dt) => {
       Object.values(this.$tracked.villager).forEach((entity) => {
-        entity.c.villager.busy = false;
+        const {villager} = entity.c;
+        console.log(villager.busy);
+        villager.busy = Math.max(0, villager.busy - dt);
       });
     };
     this.update = {
@@ -33,7 +35,7 @@ export default class VillagerSystem {
         if (!villager.busy && hunger.current < hunger.max) {
           const bush = getNearest(entity, Object.values(this.$tracked.bush));
           if (bush) {
-            villager.busy = true;
+            villager.busy += dt;
             moveTo(entity, bush.c.position, 50);
           }
         }

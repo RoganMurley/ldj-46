@@ -9,7 +9,7 @@ import img2 from '../sprites/villager-2.png';
 
 export default function (params) {
   const {size} = params;
-  const hunger = params.hunger || 100000;
+  const hunger = params.hunger || 50000;
   return new hitagi.prefabs.Body({
       width: 28 * size,
       height: 68 * size,
