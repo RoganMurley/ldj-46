@@ -1,3 +1,5 @@
+import {moveTo} from '../utils.js';
+
 const ANIMATION_SPEED = 0.08;
 
 export default class BeastSystem {
@@ -22,23 +24,7 @@ export default class BeastSystem {
         // Controls
         if (controlsSystem.check('move')) {
           const mousePos = controlsSystem.cameraGetMousePos();
-          goto.x = mousePos.x;
-          goto.y = mousePos.y;
-
-          const speed = 200;
-          const diffX = Math.abs(position.x - goto.x);
-          const diffY = Math.abs(position.y - goto.y);
-          let speedX = speed;
-          let speedY = speed;
-
-          if (diffX > diffY) {
-            speedY *= (diffY / diffX);
-          } else {
-            speedX *= (diffX / diffY);
-          }
-
-          goto.xspeed = speedX;
-          goto.yspeed = speedY;
+          moveTo(entity, mousePos, 200)
         }
       },
     };
