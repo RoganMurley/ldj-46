@@ -9,7 +9,7 @@ export default class HungerSystem {
     this.build = {
       hunger: (entity) => {
         let {x, y} = entity.c.position;
-        const offsetY = -0.8 * entity.c.collision.height;
+        const offsetY = -0.65 * entity.c.collision.height;
         y += offsetY;
         entity.world.add(
           new HungerBar({
@@ -45,6 +45,7 @@ export default class HungerSystem {
         const {hunger} = followedEntity.c;
         const ratio = 32 * hunger.current / hunger.max;
         entity.c.rectangle.width = ratio;
+        entity.c.rectangle.color = 0xA00404; // bugfix :()
       }
     };
   }

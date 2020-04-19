@@ -13,7 +13,7 @@ export default function (params) {
       ...params,
     })
     .attach(new hitagi.components.graphics.Rectangle({
-      color: 0xfff,
+      color: 0xA00404,
       width,
       height,
       ...params,
