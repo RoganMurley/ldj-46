@@ -13,11 +13,14 @@ export default class ProcreationSystem {
         this.procreate(
           0.0005,
           entity.c.position,
-          entity.c.bush.size,
+          entity.c.bush.size * 0.5,
           Bush,
         );
       },
       villager: (entity, dt) => {
+        if (entity.c.hunger.current < entity.c.hunger.max * 0.5) {
+          return;
+        }
         this.procreate(
           0.0005,
           entity.c.position,
@@ -27,7 +30,7 @@ export default class ProcreationSystem {
       },
       weed: (entity, dt) => {
         this.procreate(
-          0.0005,
+          0.01,
           entity.c.position,
           entity.c.weed.size,
           Weed,

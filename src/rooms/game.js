@@ -17,8 +17,10 @@ export default function gameRoom (width, height) {
   const beast = new Beast({x: width * 0.5, y: height * 0.5});
   const followCamera = new FollowCamera({x: width * 0.5, y: height * 0.5});
   const bushes = [
-    new Bush({x: width * 0.75, y: height * 0.25, size: 1}),
-    new Bush({x: width * 0.25, y: height * 0.75, size: 1}),
+    new Bush({x: 450, y: 120, size: 1.1}),
+    new Bush({x: 120, y: 450, size: 0.9}),
+    new Bush({x: 120, y: 120, size: 1.2}),
+    new Bush({x: 450, y: 450, size: 1}),
   ];
   const villagers = [
     new Villager({x: width * 0.2, y: height * 0.2, size: 1, hunger: 50000}),

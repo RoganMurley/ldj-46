@@ -53,6 +53,25 @@ export default class DeathSystem {
           }));
         }
       },
+
+      bush: (entity, dt) => {
+        let scaleFactor = 1.0001;
+        const villagerHits = collisionSystem.collide(entity, 'villager');
+        villagerHits.forEach((villager) => {
+          const {hunger} = villager.c;
+          hunger.current = Math.min(hunger.current + 20*dt, hunger.max);
+          scaleFactor -= 0.01;
+        });
+        const {graphic, collision} = entity.c;
+        graphic.scale.x *= scaleFactor;
+        graphic.scale.y *= scaleFactor;
+        collision.width *= scaleFactor;
+        collision.height *= scaleFactor;
+        if (collision.width < 10) {
+          entity.world.remove(entity);
+          soundSystem.play(deathSfxUrl);
+        }
+      },
     };
   }
 }

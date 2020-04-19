@@ -1,4 +1,5 @@
 import Camera from '../components/Camera.js';
+import gameRoom from '../rooms/game.js';
 
 import extinctionSfxUrl from '../sounds/extinction.wav';
 
@@ -18,6 +19,7 @@ export default class GameOverSystem {
     this.tickStart = dt => {
       if (this.ended) {
         if (this.ready && controlsSystem.check('start')) {
+          roomSystem.saveRoom('game', gameRoom(width, height));
           roomSystem.loadRoom('game');
           this.ended = false;
           this.ready = false;

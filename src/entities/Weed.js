@@ -22,18 +22,18 @@ export default function Weed(params) {
 
 
 const weedPositions = [
-  {x: 0.1, y: 0.1},
-  {x: 0.35, y: 0.24},
-  {x: 0.78, y: 0.34},
-  {x: 0.87, y: 0.14},
-  {x: 0.2, y: 0.71},
-  {x: 0.5, y: 0.9},
-  {x: 0.9, y: 0.83},
+  {x: 100, y: 100},
+  {x: 350, y: 240},
+  {x: 780, y: 340},
+  {x: 870, y: 140},
+  {x: 200, y: 710},
+  {x: 500, y: 900},
+  {x: 900, y: 830},
 ];
 
 
 export function makeWeeds(width, height) {
   return weedPositions.map(({x, y}) => {
-    return new Weed({x: width * x, y: height * y, size: 1});
+    return new Weed({x, y, size: 1});
   });
 }

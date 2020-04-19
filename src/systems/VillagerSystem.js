@@ -8,11 +8,11 @@ export default class VillagerSystem {
     this.$tracking = {
       bush: 'many',
       villager: 'many',
+      weed: 'many',
     };
     this.tickStart = (dt) => {
       Object.values(this.$tracked.villager).forEach((entity) => {
         const {villager} = entity.c;
-        console.log(villager.busy);
         villager.busy = Math.max(0, villager.busy - dt);
       });
     };
@@ -32,11 +32,11 @@ export default class VillagerSystem {
         }
 
         // Hungry behavior.
-        if (!villager.busy && hunger.current < hunger.max) {
+        if (!villager.busy && hunger.current < hunger.max * 0.6) {
           const bush = getNearest(entity, Object.values(this.$tracked.bush));
           if (bush) {
             villager.busy += dt;
-            moveTo(entity, bush.c.position, 50);
+            moveTo(entity, bush.c.position, 50)            
           }
         }
       },
