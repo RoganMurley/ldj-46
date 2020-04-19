@@ -13,12 +13,6 @@ export default class DeathSystem {
           collisionSystem.collide(entity, 'beast').length
         ) {
           entity.world.remove(entity);
-          const {position, weed} = entity.c;
-          entity.world.add(new Blood({
-            remaining: 60000,
-            size: 0.4 * weed.size,
-            ...position,
-          }));
         }
       },
 
