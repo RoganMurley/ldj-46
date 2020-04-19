@@ -17,16 +17,16 @@ export default function gameRoom (width, height) {
   const beast = new Beast({x: width * 0.5, y: height * 0.5});
   const followCamera = new FollowCamera({x: width * 0.5, y: height * 0.5});
   const bushes = [
-    new Bush({x: 450, y: 120, size: 1.1}),
-    new Bush({x: 120, y: 450, size: 0.9}),
-    new Bush({x: 120, y: 120, size: 1.2}),
-    new Bush({x: 450, y: 450, size: 1}),
+    new Bush({x: width * 0.5 - 228, y: height * 0.5 - 228, size: 1.1}),
+    new Bush({x: width * 0.5 - 228, y: height * 0.5 + 228, size: 0.9}),
+    new Bush({x: width * 0.5 + 228, y: height * 0.5 - 228, size: 1.2}),
+    new Bush({x: width * 0.5 + 228, y: height * 0.5 + 228, size: 1}),
   ];
   const villagers = [
-    new Villager({x: width * 0.2, y: height * 0.2, size: 1, hunger: 50000}),
-    new Villager({x: width * 0.2, y: height * 0.8, size: 1, hunger: 18000}),
-    new Villager({x: width * 0.8, y: height * 0.2, size: 1, hunger: 16000}),
-    new Villager({x: width * 0.8, y: height * 0.8, size: 1, hunger: 15000}),
+    new Villager({x: width * 0.5 - 228, y: height * 0.5 - 128, size: 1, hunger: 50000}),
+    new Villager({x: width * 0.5 - 228, y: height * 0.5 + 128, size: 1, hunger: 18000}),
+    new Villager({x: width * 0.5 + 228, y: height * 0.5 - 128, size: 1, hunger: 16000}),
+    new Villager({x: width * 0.5 + 228, y: height * 0.5 + 128, size: 1, hunger: 15000}),
   ];
   const weeds = makeWeeds(width, height);
 

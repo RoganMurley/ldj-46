@@ -11,12 +11,14 @@ export default class DeathSystem {
     this.update = {
       weed: (entity, dt) => {
         const villagerHit = collisionSystem.collide(entity, 'villager').length;
-        const beastHit = collisionSystem.collide(entity, 'beast').length;
-        if (villagerHit || beastHit) {
+        const beastHits = collisionSystem.collide(entity, 'beast');
+        if (villagerHit || beastHits.length) {
           entity.world.remove(entity);
-          if (beastHit) {
+          if (beastHits.length) {
             this.$tracked.followCamera.c.followCamera.shake.x += 3;
             this.$tracked.followCamera.c.followCamera.shake.y += 3;
+            const {hunger} = beastHits[0].c;
+            hunger.current = Math.min(hunger.max, hunger.current += 100);
           }
         }
       },
@@ -55,7 +57,7 @@ export default class DeathSystem {
       },
 
       bush: (entity, dt) => {
-        let scaleFactor = 1.0001;
+        let scaleFactor = 1.0005;
         const villagerHits = collisionSystem.collide(entity, 'villager');
         villagerHits.forEach((villager) => {
           const {hunger} = villager.c;

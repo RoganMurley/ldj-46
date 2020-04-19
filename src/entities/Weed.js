@@ -21,19 +21,20 @@ export default function Weed(params) {
 }
 
 
-const weedPositions = [
-  {x: 100, y: 100},
-  {x: 350, y: 240},
-  {x: 780, y: 340},
-  {x: 870, y: 140},
-  {x: 200, y: 710},
-  {x: 500, y: 900},
-  {x: 900, y: 830},
-];
-
-
 export function makeWeeds(width, height) {
-  return weedPositions.map(({x, y}) => {
-    return new Weed({x, y, size: 1});
-  });
+  const weeds = [];
+  const count = 24;
+  const pi = 3.145;
+  const angle = 2 * pi / count;
+  const radius = 400;
+  for (let i = 0; i < count; i++) {
+    weeds.push(
+      new Weed({
+        x: width * 0.5 + radius * Math.cos(i * angle),
+        y: height * 0.5 + radius * Math.sin(i * angle),
+        size: 1
+      })
+    );
+  }
+  return weeds;
 }
