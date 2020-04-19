@@ -16,6 +16,6 @@ export default function(params) {
       ...params,
     }))
     .attach(new Beast({}))
-    .attach(new Hunger({current: 10000, max: 100000}))
+    .attach(new Hunger({current: 50000, max: 100000}))
     .attach(new Goto({x: 0, y: 0, xspeed: 0, yspeed:0, ...params}))
 }

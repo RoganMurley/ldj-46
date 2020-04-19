@@ -50,6 +50,8 @@ const cameraSystem = world.register(new CameraSystem(width, height, renderSystem
 
 const soundSystem = new hitagi.systems.SoundSystem();
 
+world.register(new HungerSystem());
+
 const gameStartSystem = new GameStartSystem(
   controlsSystem,
   () => {
@@ -66,7 +68,6 @@ const gameStartSystem = new GameStartSystem(
     world.register(new GoalSystem());
     world.register(new BloodSystem());
     world.register(new DeathSystem(collisionSystem, soundSystem));
-    world.register(new HungerSystem());
   },
 );
 world.register(gameStartSystem);

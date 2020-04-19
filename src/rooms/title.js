@@ -20,7 +20,7 @@ export default function titleRoom (width, height) {
       copy: 'Systems that Bleed',
       style: {
         font: '64px Sans-Serif',
-        fill: 0x4B4A26,
+        fill: 0xA00404,
       },
     }));
 
@@ -36,7 +36,7 @@ export default function titleRoom (width, height) {
       copy: 'Ludum Dare 46',
       style: {
         font: '32px Sans-Serif',
-        fill: 0x4B4A26,
+        fill: 0xA00404,
       },
     }));
 

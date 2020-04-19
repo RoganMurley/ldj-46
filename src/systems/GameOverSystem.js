@@ -2,7 +2,7 @@ import Camera from '../components/Camera.js';
 
 import extinctionSfxUrl from '../sounds/extinction.wav';
 
-const textColor = 0x530603;
+const textColor = 0xA00404;
 
 
 export default class GameOverSystem {
@@ -42,7 +42,7 @@ export default class GameOverSystem {
     this.gameOver = (extinctCreature) => {
       world.add(new hitagi.Entity()
         .attach(new hitagi.components.graphics.Graphic({
-          z: 10,
+          z: 100,
           relative: false,
           translate: {
             x: width * 0.5,
@@ -60,7 +60,7 @@ export default class GameOverSystem {
 
       world.add(new hitagi.Entity()
         .attach(new hitagi.components.graphics.Graphic({
-          z: 10,
+          z: 100,
           relative: false,
           translate: {
             x: width * 0.5,
