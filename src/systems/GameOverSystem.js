@@ -8,7 +8,7 @@ const textColor = 0x530603;
 export default class GameOverSystem {
   constructor(width, height, world, soundSystem, controlsSystem, roomSystem) {
     this.$tracking = {
-      beast: 'single',
+      beast: 'many',
       bush: 'many',
       weed: 'many',
       villager: 'many',
@@ -26,6 +26,9 @@ export default class GameOverSystem {
         }
         return;
       };
+      if (!Object.values(this.$tracked.beast).length) {
+        this.gameOver('Beasts');
+      }
       if (!Object.values(this.$tracked.bush).length) {
         this.gameOver('Bushes');
       }
@@ -47,7 +50,7 @@ export default class GameOverSystem {
           },
         }))
         .attach(new hitagi.components.graphics.Text({
-          copy: 'EXTINCTION EVENT',
+          copy: 'EXTINCTION',
           style: {
             font: '64px Sans-Serif',
             fill: textColor,
@@ -65,7 +68,7 @@ export default class GameOverSystem {
           },
         }))
         .attach(new hitagi.components.graphics.Text({
-          copy: `${extinctCreature} are now extinct`,
+          copy: `${extinctCreature} are extinct.`,
           style: {
             font: '32px Sans-Serif',
             fill: textColor,

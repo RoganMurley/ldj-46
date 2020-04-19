@@ -1,8 +1,9 @@
 import hitagi from 'hitagi';
 
 import Beast from '../components/Beast.js';
-import Goto from '../components/Goto.js';
 import Camera from '../components/Camera.js';
+import Goto from '../components/Goto.js';
+import Hunger from '../components/Hunger.js';
 
 import img1 from '../sprites/beast-1.png';
 import img2 from '../sprites/beast-2.png';
@@ -15,5 +16,6 @@ export default function(params) {
       ...params,
     }))
     .attach(new Beast({}))
+    .attach(new Hunger({current: 10000, max: 100000}))
     .attach(new Goto({x: 0, y: 0, xspeed: 0, yspeed:0, ...params}))
 }

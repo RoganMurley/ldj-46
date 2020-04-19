@@ -12,11 +12,13 @@ export default class FearSystem {
         const {goto, graphic, position, sprite, velocity} = entity.c;
 
         let speed = 0;
-        if (distance(position, this.$tracked.beast.c.position) < 240) {
+        const beast = this.$tracked.beast;
+        const beastPosition = beast ? this.$tracked.beast.c.position : position;
+        if (distance(position, beastPosition) < 240) {
           speed = -50;
         }
-        goto.x = this.$tracked.beast.c.position.x;
-        goto.y = this.$tracked.beast.c.position.y;
+        goto.x = beastPosition.x;
+        goto.y = beastPosition.y;
 
         const diffX = Math.abs(position.x - goto.x);
         const diffY = Math.abs(position.y - goto.y);

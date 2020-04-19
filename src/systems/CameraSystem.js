@@ -53,8 +53,9 @@ export default class CameraSystem {
       },
       followCamera: (entity, dt) => {
         // Follow the camera.
+        const beast = this.$tracked.beast;
         const {position, followCamera} = entity.c;
-        const target = this.$tracked.beast.c.position;
+        const target = beast ? beast.c.position : position;
         const speed = followCamera.cameraSpeed;
 
         const xDiff = Math.abs(position.x - target.x);
