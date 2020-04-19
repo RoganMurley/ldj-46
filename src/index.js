@@ -57,7 +57,7 @@ const gameStartSystem = new GameStartSystem(
     world.register(new BeastSystem(controlsSystem, collisionSystem, soundSystem));
     world.register(new VillagerSystem(collisionSystem));
     world.register(new FearSystem());
-    world.register(new ProcreationSystem(soundSystem));
+    world.register(new ProcreationSystem(world, soundSystem));
     world.register(new GameOverSystem(width, height, world, soundSystem, controlsSystem, roomSystem));
     world.register(new GoalSystem());
   },

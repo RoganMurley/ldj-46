@@ -7,38 +7,41 @@ import spawnSfxUrl from '../sounds/spawn.wav';
 
 
 export default class ProcreationSystem {
-  constructor(soundSystem) {
+  constructor(world, soundSystem) {
     this.update = {
       bush: (entity, dt) => {
-        const {position, bush} = entity.c;
-        if (Math.random() < 0.0005) {
-          const x = position.x + 800 * (Math.random() - 0.5);
-          const y = position.y + 800 * (Math.random() - 0.5);
-          const size = bush.size * (1 + 0.5 * (Math.random() - 0.5));
-          entity.world.add(new Bush({x, y, size}));
-          soundSystem.play(spawnSfxUrl);
-        }
+        this.procreate(
+          0.0005,
+          entity.c.position,
+          entity.c.bush.size,
+          Bush,
+        );
       },
       villager: (entity, dt) => {
-        const {position, villager} = entity.c;
-        if (Math.random() < 0.0005) {
-          const x = position.x + 200 * (Math.random() - 0.5);
-          const y = position.y + 200 * (Math.random() - 0.5);
-          const size = villager.size * (1 + 0.5 * (Math.random() - 0.5));
-          entity.world.add(new Villager({x, y, size}));
-          soundSystem.play(spawnSfxUrl);
-        }
+        this.procreate(
+          0.0005,
+          entity.c.position,
+          entity.c.villager.size,
+          Villager,
+      );
       },
       weed: (entity, dt) => {
-        const {position, weed} = entity.c;
-        if (Math.random() < 0.0005) {
-          const x = position.x + 200 * (Math.random() - 0.5);
-          const y = position.y + 200 * (Math.random() - 0.5);
-          const size = weed.size * (1 + 0.5 * (Math.random() - 0.5));
-          entity.world.add(new Weed({x, y, size}));
-          soundSystem.play(spawnSfxUrl);
-        }
+        this.procreate(
+          0.0005,
+          entity.c.position,
+          entity.c.weed.size,
+          Weed,
+        );
       },
+    };
+    this.procreate = (probability, position, initialSize, cls) => {
+      if (Math.random() < 0.0005) {
+        const x = position.x + 200 * (Math.random() - 0.5);
+        const y = position.y + 200 * (Math.random() - 0.5);
+        const size = initialSize * (1 + 0.5 * (Math.random() - 0.5));
+        world.add(new cls({x, y, size}));
+        soundSystem.play(spawnSfxUrl);
+      }
     };
   }
 }
