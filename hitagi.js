@@ -2958,7 +2958,7 @@ function isNullOrUndefined(arg) {
         loadSound(obj);
         return;
       }
-      
+
       if (/^data:[^;]+;base64,/.test(url)) {
         // Decode base64 data-URIs because some browsers cannot load data-URIs with XMLHttpRequest.
         var data = atob(url.split(',')[1]);
@@ -2966,7 +2966,7 @@ function isNullOrUndefined(arg) {
         for (var i=0; i<data.length; ++i) {
           dataView[i] = data.charCodeAt(i);
         }
-        
+
         decodeAudioData(dataView.buffer, obj, url);
       } else {
         // load the buffer from the URL
@@ -22579,7 +22579,7 @@ WebGLGraphicsData.prototype.destroy = function () {
 
     this.gl.deleteBuffer(this.buffer);
     this.gl.deleteBuffer(this.indexBuffer);
-    
+
     this.gl = null;
 
     this.buffer = null;
@@ -25186,7 +25186,7 @@ CanvasRenderer.prototype.resize = function (w, h)
     //reset the scale mode.. oddly this seems to be reset when the canvas is resized.
     //surely a browser bug?? Let pixi fix that for you..
     this.currentScaleMode = CONST.SCALE_MODES.DEFAULT;
-    
+
     if(this.smoothProperty)
     {
         this.context[this.smoothProperty] = (this.currentScaleMode === CONST.SCALE_MODES.LINEAR);
@@ -25652,7 +25652,7 @@ CanvasGraphics.renderGraphicsMask = function (graphics, context)
  *
  * @private
  * @param graphics {Graphics} the graphics that will have its tint updated
- * 
+ *
  */
 CanvasGraphics.updateGraphicsTint = function (graphics)
 {
@@ -26926,7 +26926,7 @@ FilterManager.prototype.pushFilter = function (target, filters)
     // get the bounds of the object..
     // TODO replace clone with a copy to save object creation
     var bounds = target.filterArea ? target.filterArea.clone() : target.getBounds();
-    
+
     //bounds = bounds.clone();
 
     // round off the rectangle to get a nice smoooooooth filter :)
@@ -27587,7 +27587,7 @@ module.exports = WebGLMaskManager;
 
 /**
  * Changes the mask stack that is used by this manager
- * @param stencilMaskStack {StencilMaskStack} The mask stack 
+ * @param stencilMaskStack {StencilMaskStack} The mask stack
  *
  */
 WebGLMaskManager.prototype.setMaskStack = function ( stencilMaskStack )
@@ -27608,7 +27608,7 @@ WebGLMaskManager.prototype.setMaskStack = function ( stencilMaskStack )
 
 /**
  * Applies the Mask and adds it to the current filter stack. @alvin
- * 
+ *
  * @param graphics {Graphics}
  * @param webGLData {any[]}
  */
@@ -31609,7 +31609,7 @@ RenderTexture.prototype.renderWebGL = function (displayObject, matrix, clear, up
 
     //TODO not a fan that this is here... it will move!
     this.textureBuffer.activate();
-    
+
     // setWorld Alpha to ensure that the object is renderer at full opacity
     displayObject.worldAlpha = 1;
 
@@ -34879,7 +34879,7 @@ DisplayObject.prototype._renderCachedCanvas = function (renderer)
     {
         return;
     }
-    
+
     this._initCachedDisplayObjectCanvas( renderer );
 
     this._cachedSprite.worldAlpha = this.worldAlpha;
@@ -34985,9 +34985,9 @@ core.DisplayObject.prototype.name = null;
 */
 core.Container.prototype.getChildByName = function (name)
 {
-    for (var i = 0; i < this.children.length; i++) 
+    for (var i = 0; i < this.children.length; i++)
     {
-        if (this.children[i].name === name) 
+        if (this.children[i].name === name)
         {
             return this.children[i];
         }

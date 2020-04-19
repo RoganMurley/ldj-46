@@ -14,9 +14,9 @@ export default function titleRoom (width, height) {
     }))
     .attach(new hitagi.components.graphics.Graphic())
     .attach(new hitagi.components.graphics.Text({
-      copy: 'The Beast Weeps',
+      copy: 'Upon the Common',
       style: {
-        font: '6rem Sans-Serif',
+        font: '5rem Sans-Serif',
         fill: 0x4B4A26,
       },
     }));
@@ -28,7 +28,7 @@ export default function titleRoom (width, height) {
     }))
     .attach(new hitagi.components.graphics.Graphic())
     .attach(new hitagi.components.graphics.Text({
-      copy: 'Ludum Dare 46: Keep it alive',
+      copy: 'Ludum Dare 46: "Keep It Alive"',
       style: {
         font: '2rem Sans-Serif',
         fill: 0x4B4A26,

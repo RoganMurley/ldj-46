@@ -10,6 +10,7 @@ import GotoSystem from './systems/GotoSystem.js';
 import VillagerSystem from './systems/VillagerSystem.js';
 import FearSystem from './systems/FearSystem.js';
 import ProcreationSystem from './systems/ProcreationSystem.js';
+import GameOverSystem from './systems/GameOverSystem.js';
 
 import bushImgUrl from './sprites/bush.png';
 import beast1ImgUrl from './sprites/beast-1.png';
@@ -19,6 +20,7 @@ import villager2ImgUrl from './sprites/villager-2.png';
 import weedImgUrl from './sprites/weed.png';
 
 import deathSfxUrl from './sounds/death.wav';
+import extinctionSfxUrl from './sounds/extinction.wav';
 import spawnSfxUrl from './sounds/spawn.wav';
 
 
@@ -53,6 +55,7 @@ const gameStartSystem = new GameStartSystem(
     world.register(new VillagerSystem(collisionSystem));
     world.register(new FearSystem());
     world.register(new ProcreationSystem(soundSystem));
+    world.register(new GameOverSystem(width, height, world, soundSystem, controlsSystem, roomSystem));
   },
 );
 world.register(gameStartSystem);
@@ -72,6 +75,8 @@ renderSystem.load(
   main,
 );
 
+soundSystem.load(deathSfxUrl);
+soundSystem.load(extinctionSfxUrl);
 soundSystem.load(spawnSfxUrl);
 
 function main() {

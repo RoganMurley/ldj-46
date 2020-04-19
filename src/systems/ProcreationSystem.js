@@ -14,7 +14,7 @@ export default class ProcreationSystem {
         if (Math.random() < 0.0005) {
           const x = position.x + 800 * (Math.random() - 0.5);
           const y = position.y + 800 * (Math.random() - 0.5);
-          const size = bush.size + 0.5 * (Math.random() - 0.5);
+          const size = bush.size * (1 + 0.5 * (Math.random() - 0.5));
           entity.world.add(new Bush({x, y, size}));
           soundSystem.play(spawnSfxUrl);
         }
@@ -24,7 +24,7 @@ export default class ProcreationSystem {
         if (Math.random() < 0.0005) {
           const x = position.x + 200 * (Math.random() - 0.5);
           const y = position.y + 200 * (Math.random() - 0.5);
-          const size = villager.size + 0.5 * (Math.random() - 0.5);
+          const size = villager.size * (1 + 0.5 * (Math.random() - 0.5));
           entity.world.add(new Villager({x, y, size}));
           soundSystem.play(spawnSfxUrl);
         }
@@ -34,7 +34,7 @@ export default class ProcreationSystem {
         if (Math.random() < 0.0005) {
           const x = position.x + 200 * (Math.random() - 0.5);
           const y = position.y + 200 * (Math.random() - 0.5);
-          const size = weed.size + 0.5 * (Math.random() - 0.5);
+          const size = weed.size * (1 + 0.5 * (Math.random() - 0.5));
           entity.world.add(new Weed({x, y, size}));
           soundSystem.play(spawnSfxUrl);
         }
