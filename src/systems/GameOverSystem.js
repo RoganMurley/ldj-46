@@ -21,7 +21,7 @@ export default class GameOverSystem {
         if (this.ready && controlsSystem.check('start')) {
           goalSystem.paused = false;
           goalSystem.time = 0;
-          goalSystem.friendCount = 4;
+          goalSystem.friendCount = 0;
           roomSystem.saveRoom('game', gameRoom(width, height));
           roomSystem.loadRoom('game');
           this.ended = false;
