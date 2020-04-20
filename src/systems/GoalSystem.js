@@ -1,40 +1,45 @@
 export default class GoalSystem {
   constructor() {
     this.$tracking = {
-      beast: 'many',
-      bush: 'many',
-      weed: 'many',
-      villager: 'many',
+      score: 'single',
+      friends: 'single',
     };
 
-    this.goals = {
-      biped: {
-        tiny: 0,
-        smoll: 0,
-        big: 0,
-        giant: 0,
-      },
+    this.time = 0;
+    this.friendCount = 4;
+    this.paused = false;
+
+    this.tickStart = (dt) => {
+      if (this.paused) {
+        return;
+      }
+      this.time += dt;
+      const days = Math.floor(this.time / 3000);
+      if (days === 1) {
+        this.$tracked.score.c.text.copy = `${days} day of friendship`;
+      } else {
+        this.$tracked.score.c.text.copy = `${days} days of friendship`;
+      }
+      this.$tracked.score.c.text.color = 0xfff; // bugfix
+
+
+      if (this.friendCount === 1) {
+        this.$tracked.friends.c.text.copy = `${this.friendCount} friend`;
+      } else {
+        this.$tracked.friends.c.text.copy = `${this.friendCount} friends`;
+      }
+      this.$tracked.friends.c.text.color = 0xfff; // bugfix
     };
 
     this.build = {
-      villager: (entity, dt) => {
-        const {size} = entity.c.villager;
-        if (size > 2) {
-          console.log('Breed a giant bidep');
-          this.goals.biped.giant++;
-        }
-        if (size > 1.5) {
-          console.log('Breed a big bidep');
-          this.goals.biped.big++;
-        }
-        if (size < 0.6) {
-          console.log('Breed a smoll biped');
-          this.goals.biped.smoll++;
-        }
-        if (size < 0.4) {
-          console.log('Breed a tiny biped');
-          this.goals.biped.tiny++;
-        }
+      villager: (entity) => {
+        this.friendCount++;
+      }
+    };
+
+    this.destroy = {
+      villager: (entity) => {
+        this.friendCount--;
       }
     };
   }

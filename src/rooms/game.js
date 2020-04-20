@@ -35,6 +35,48 @@ export default function gameRoom (width, height) {
     new Villager({x: centre.x + 228, y: centre.y + 128, size: 1, hunger: 15000}),
   ];
   const weeds = makeWeeds(width, height);
+  const score = new hitagi.Entity()
+    .attach(new hitagi.components.graphics.Graphic({
+      relative: false,
+      anchor: {
+        x: 0,
+        y: 0,
+      },
+      translate: {
+        x: 10,
+        y: 5,
+      },
+      z: 1000,
+    }))
+    .attach(new hitagi.components.graphics.Text({
+      copy: "0 days of friendship",
+      style: {
+        font: '32px Sans-Serif',
+        fill: 0xffffff,
+      },
+    }))
+    .attach({$id: 'score'});
+  const friends = new hitagi.Entity()
+    .attach(new hitagi.components.graphics.Graphic({
+      relative: false,
+      anchor: {
+        x: 0,
+        y: 0,
+      },
+      translate: {
+        x: 10,
+        y: 40,
+      },
+      z: 1000,
+    }))
+    .attach(new hitagi.components.graphics.Text({
+      copy: "4 friends",
+      style: {
+        font: '32px Sans-Serif',
+        fill: 0xffffff,
+      },
+    }))
+    .attach({$id: 'friends'});
 
-  return [background, beast, followCamera, ...bushes, ...villagers, ...weeds];
+  return [background, score, friends, beast, followCamera, ...bushes, ...villagers, ...weeds];
 }

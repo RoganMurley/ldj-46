@@ -7,7 +7,7 @@ const textColor = 0xA00404;
 
 
 export default class GameOverSystem {
-  constructor(width, height, world, soundSystem, controlsSystem, roomSystem) {
+  constructor(width, height, world, soundSystem, controlsSystem, roomSystem, goalSystem) {
     this.$tracking = {
       beast: 'many',
       villager: 'many',
@@ -19,6 +19,9 @@ export default class GameOverSystem {
     this.tickStart = dt => {
       if (this.ended) {
         if (this.ready && controlsSystem.check('start')) {
+          goalSystem.paused = false;
+          goalSystem.time = 0;
+          goalSystem.friendCount = 4;
           roomSystem.saveRoom('game', gameRoom(width, height));
           roomSystem.loadRoom('game');
           this.ended = false;
@@ -30,7 +33,7 @@ export default class GameOverSystem {
         this.gameOver("Your friends are lonely now.");
       }
       if (!Object.values(this.$tracked.villager).length) {
-        this.gameOver("You are lonely now.");
+        this.gameOver("You're lonely now.");
       }
     };
     this.gameOver = (extinctCreature) => {
@@ -74,6 +77,7 @@ export default class GameOverSystem {
       this.ended = true;
       this.$tracked.followCamera.c.followCamera.shake.x += 20;
       this.$tracked.followCamera.c.followCamera.shake.y += 20;
+      goalSystem.paused = true;
 
       setTimeout(
         () => {this.ready = true;},

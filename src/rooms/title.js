@@ -27,7 +27,7 @@ export default function titleRoom (width, height) {
       copy: "Man's Best Friend",
       style: {
         font: '64px Sans-Serif',
-        fill: 0xA00404,
+        fill: 0xffffff,
       },
     }));
 
@@ -43,7 +43,7 @@ export default function titleRoom (width, height) {
       copy: 'Ludum Dare 46',
       style: {
         font: '32px Sans-Serif',
-        fill: 0xA00404,
+        fill: 0xffffff,
       },
     }));
 
