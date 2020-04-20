@@ -30,7 +30,7 @@ export default class ProcreationSystem {
       },
       weed: (entity, dt) => {
         this.procreate(
-          0.0005,
+          0.00005,
           entity.c.position,
           entity.c.weed.size,
           Weed,

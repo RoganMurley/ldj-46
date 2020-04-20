@@ -3,10 +3,10 @@ export default class GoalSystem {
     this.$tracking = {
       score: 'single',
       friends: 'single',
+      villager: 'many',
     };
 
     this.time = 0;
-    this.friendCount = 4;
     this.paused = false;
 
     this.tickStart = (dt) => {
@@ -22,25 +22,13 @@ export default class GoalSystem {
       }
       this.$tracked.score.c.text.color = 0xfff; // bugfix
 
-
-      if (this.friendCount === 1) {
-        this.$tracked.friends.c.text.copy = `${this.friendCount} friend`;
+      const friendCount = Object.values(this.$tracked.villager).length;
+      if (friendCount === 1) {
+        this.$tracked.friends.c.text.copy = `${friendCount} friend`;
       } else {
-        this.$tracked.friends.c.text.copy = `${this.friendCount} friends`;
+        this.$tracked.friends.c.text.copy = `${friendCount} friends`;
       }
       this.$tracked.friends.c.text.color = 0xfff; // bugfix
-    };
-
-    this.build = {
-      villager: (entity) => {
-        this.friendCount++;
-      }
-    };
-
-    this.destroy = {
-      villager: (entity) => {
-        this.friendCount--;
-      }
     };
   }
 }
