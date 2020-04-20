@@ -11,7 +11,7 @@ const centre = {
 };
 
 
-export default function titleRoom (width, height) {
+export default function titleRoom (width, height, goalSystem) {
   const gameStartListener = new hitagi.Entity()
     .attach({$id: "gameStartListener"});
 
@@ -31,18 +31,19 @@ export default function titleRoom (width, height) {
       },
     }));
 
-  const subtitle = new hitagi.Entity()
+
+  const highscore = new hitagi.Entity()
     .attach(new hitagi.components.graphics.Graphic({
       relative: false,
       translate: {
         x: width * 0.5,
-        y: height * 0.6,
+        y: height * 0.55,
       },
     }))
     .attach(new hitagi.components.graphics.Text({
-      copy: 'Ludum Dare 46',
+      copy: `Most Days of Friendship: ${goalSystem.bestTime}`,
       style: {
-        font: '32px Sans-Serif',
+        font: '26px Sans-Serif',
         fill: 0xffffff,
       },
     }));
@@ -57,5 +58,5 @@ export default function titleRoom (width, height) {
   });
   const weeds = makeWeeds(width, height);
 
-  return [gameStartListener, title, subtitle, background, camera, ...weeds];
+  return [gameStartListener, title, highscore, background, camera, ...weeds];
 }

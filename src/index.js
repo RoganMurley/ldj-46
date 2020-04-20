@@ -51,6 +51,7 @@ const cameraSystem = world.register(new CameraSystem(width, height, renderSystem
 const soundSystem = new hitagi.systems.SoundSystem();
 
 world.register(new HungerSystem());
+const goalSystem = world.register(new GoalSystem());
 
 const gameStartSystem = new GameStartSystem(
   controlsSystem,
@@ -64,7 +65,6 @@ const gameStartSystem = new GameStartSystem(
     world.register(new VillagerSystem(collisionSystem));
     world.register(new FearSystem());
     world.register(new ProcreationSystem(world, soundSystem));
-    const goalSystem = world.register(new GoalSystem());
     world.register(new GameOverSystem(width, height, world, soundSystem, controlsSystem, roomSystem, goalSystem));
     world.register(new BloodSystem());
     world.register(new DeathSystem(collisionSystem, soundSystem));
@@ -94,7 +94,7 @@ soundSystem.load(spawnSfxUrl);
 
 function main() {
   // Setup rooms.
-  roomSystem.saveRoom('title', titleRoom(width, height));
+  roomSystem.saveRoom('title', titleRoom(width, height, goalSystem));
   roomSystem.saveRoom('game', gameRoom(width, height));
   roomSystem.loadRoom('title');
 

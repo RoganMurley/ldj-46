@@ -9,8 +9,16 @@ export default class GoalSystem {
     this.time = 0;
     this.paused = false;
 
+    this.bestTime = 0;
+    if (window.localStorage) {
+      const savedTime = window.localStorage['bestTime'];
+      if (savedTime) {
+        this.bestTime = savedTime;
+      }
+    }
+
     this.tickStart = (dt) => {
-      if (this.paused) {
+      if (this.paused || !this.$tracked.score || !this.$tracked.villager) {
         return;
       }
       this.time += dt;
@@ -29,6 +37,12 @@ export default class GoalSystem {
         this.$tracked.friends.c.text.copy = `${friendCount} friends`;
       }
       this.$tracked.friends.c.text.color = 0xfff; // bugfix
+
+      if (window.localStorage && days > this.bestTime) {
+        window.localStorage.setItem('bestTime', days);
+        this.bestTime = days;
+      }
     };
+
   }
 }
