@@ -48,6 +48,23 @@ export default function titleRoom (width, height, goalSystem) {
       },
     }));
 
+
+  const highscore2 = new hitagi.Entity()
+    .attach(new hitagi.components.graphics.Graphic({
+      relative: false,
+      translate: {
+        x: width * 0.5,
+        y: height * 0.6,
+      },
+    }))
+    .attach(new hitagi.components.graphics.Text({
+      copy: `Most Friends: ${goalSystem.bestFriends}`,
+      style: {
+        font: '26px Sans-Serif',
+        fill: 0xffffff,
+      },
+    }));
+
   const camera = new hitagi.Entity()
     .attach(new hitagi.components.Position({...centre}))
     .attach(new Camera({}));
@@ -58,5 +75,5 @@ export default function titleRoom (width, height, goalSystem) {
   });
   const weeds = makeWeeds(width, height);
 
-  return [gameStartListener, title, highscore, background, camera, ...weeds];
+  return [gameStartListener, title, highscore, highscore2, background, camera, ...weeds];
 }

@@ -10,10 +10,15 @@ export default class GoalSystem {
     this.paused = false;
 
     this.bestTime = 0;
+    this.bestFriends = 0;
     if (window.localStorage) {
       const savedTime = window.localStorage['bestTime'];
       if (savedTime) {
         this.bestTime = savedTime;
+      }
+      const savedFriends = window.localStorage['bestFriends'];
+      if (savedFriends) {
+        this.bestFriends = savedFriends;
       }
     }
 
@@ -38,9 +43,15 @@ export default class GoalSystem {
       }
       this.$tracked.friends.c.text.color = 0xfff; // bugfix
 
-      if (window.localStorage && days > this.bestTime) {
-        window.localStorage.setItem('bestTime', days);
-        this.bestTime = days;
+      if (window.localStorage) {
+        if (days > this.bestTime) {
+          window.localStorage.setItem('bestTime', days);
+          this.bestTime = days;
+        }
+        if (friendCount > this.bestFriends) {
+          window.localStorage.setItem('bestFriends', friendCount);
+          this.bestFriends = friendCount;
+        }
       }
     };
 
